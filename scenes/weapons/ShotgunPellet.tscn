@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/ShotgunPellet.gd" id="1_pellet"]
+[ext_resource type="Texture2D" path="res://assets/sprites/onlyObjects_retina_rotated.png" id="2_atlas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pellet"]
+radius = 4.5
+
+[node name="ShotgunPellet" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_pellet")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.2, 0.45, 0.15, 1)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(694, 98, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pellet")
+
+[node name="TrailParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-6, 0)
+amount = 8
+lifetime = 0.16
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1.0, 0.6, 0.2, 0.8)

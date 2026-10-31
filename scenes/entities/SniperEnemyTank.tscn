@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/SniperAI.gd" id="1_ai"]
+[ext_resource type="Texture2D" path="res://assets/sprites/onlyObjects_retina_rotated.png" id="2_atlas"]
+[ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="3_health"]
+[ext_resource type="PackedScene" path="res://scenes/ui/FloatingHealthBar.tscn" id="4_hpbar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sniper"]
+size = Vector2(74, 74)
+
+[node name="SniperEnemyTank" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_ai")
+
+[node name="ChassisSprite" type="Sprite2D" parent="."]
+modulate = Color(0.4, 0.7, 1.1, 1)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(268, 186, 80, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sniper")
+
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="TurretSprite" type="Sprite2D" parent="Turret"]
+position = Vector2(25, 0)
+scale = Vector2(1.2, 0.9)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(371, 14, 60, 24)
+
+[node name="Muzzle" type="Marker2D" parent="Turret"]
+position = Vector2(68, 0)
+
+[node name="LaserSight" type="Line2D" parent="Turret"]
+top_level = true
+visible = false
+width = 2.0
+default_color = Color(1, 0.2, 0.2, 0.8)
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("parent_sprite")]
+script = ExtResource("3_health")
+max_health = 90
+parent_sprite = NodePath("../ChassisSprite")
+
+[node name="FloatingHealthBar" parent="." instance=ExtResource("4_hpbar")]
+offset_top = -60.0
+offset_bottom = -52.0
+
+[node name="TagLabel" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 60.0
+offset_bottom = -60.0
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "XẠ THỦ TẦM XA"
+horizontal_alignment = 1

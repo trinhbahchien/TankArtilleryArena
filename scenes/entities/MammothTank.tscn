@@ -1,0 +1,85 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/MammothBossAI.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://assets/sprites/onlyObjects_retina_rotated.png" id="2_atlas"]
+[ext_resource type="Script" path="res://scripts/components/HealthComponent.gd" id="3_health"]
+[ext_resource type="PackedScene" path="res://scenes/ui/FloatingHealthBar.tscn" id="4_hpbar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
+size = Vector2(102, 102)
+
+[node name="MammothTank" type="CharacterBody2D" groups=["boss", "enemy"]]
+scale = Vector2(1.35, 1.35)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_boss")
+
+[node name="ChassisSprite" type="Sprite2D" parent="."]
+modulate = Color(1.15, 0.75, 0.75, 1)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(268, 186, 80, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_boss")
+
+[node name="DamageSmokeParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-42, 0)
+emitting = false
+amount = 45
+lifetime = 1.4
+explosiveness = 0.1
+randomness = 0.35
+spread = 60.0
+gravity = Vector2(0, -32)
+initial_velocity_min = 28.0
+initial_velocity_max = 75.0
+scale_amount_min = 16.0
+scale_amount_max = 35.0
+color = Color(0.12, 0.12, 0.12, 0.9)
+
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="TurretSpriteLeft" type="Sprite2D" parent="Turret"]
+position = Vector2(25, -12)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(371, 14, 60, 24)
+
+[node name="TurretSpriteRight" type="Sprite2D" parent="Turret"]
+position = Vector2(25, 12)
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(371, 14, 60, 24)
+
+[node name="MuzzleLeft" type="Marker2D" parent="Turret"]
+position = Vector2(65, -12)
+
+[node name="MuzzleRight" type="Marker2D" parent="Turret"]
+position = Vector2(65, 12)
+
+[node name="MGMuzzle" type="Marker2D" parent="Turret"]
+position = Vector2(55, 0)
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("parent_sprite")]
+script = ExtResource("3_health")
+max_health = 350
+parent_sprite = NodePath("../ChassisSprite")
+
+[node name="FloatingHealthBar" parent="." instance=ExtResource("4_hpbar")]
+offset_left = -70.0
+offset_top = -80.0
+offset_right = 70.0
+offset_bottom = -70.0
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -160.0
+offset_top = -110.0
+offset_right = 160.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 13
+text = "👹 TRÙM CHIẾN XA MAMMOTH (350 HP)"
+horizontal_alignment = 1

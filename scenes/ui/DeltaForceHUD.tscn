@@ -1,0 +1,468 @@
+[gd_scene format=3 uid="uid://cog2nkgqq0p8g"]
+
+[ext_resource type="Script" uid="uid://bkl6dm6l36bj7" path="res://scripts/ui/DeltaForceHUD.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://dfad5xc2m83u8" path="res://scripts/ui/MinimapRadarDraw.gd" id="2_radar"]
+[ext_resource type="Script" uid="uid://cg217hkhob5x2" path="res://scripts/ui/ChassisCompassDraw.gd" id="3_compass"]
+[ext_resource type="FontFile" uid="uid://bk71mwcyvkhmn" path="res://assets/fonts/Xolonium-Regular.ttf" id="4_font"]
+[ext_resource type="Script" uid="uid://bda0nscd66cvh" path="res://scripts/ui/InWorldTrackingDraw.gd" id="5_tracking"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.08, 0.22, 0.16, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.88, 0.48, 0.95)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glass"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.02, 0.04, 0.07, 0.35)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.45, 0.65, 0.3)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_panel"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.03, 0.07, 0.11, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.68, 0.45, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_bg"]
+bg_color = Color(0.08, 0.12, 0.16, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.35, 0.42, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill"]
+bg_color = Color(0.22, 0.95, 0.46, 0.98)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DeltaForceHUD" type="CanvasLayer" unique_id=322831000]
+script = ExtResource("1_hud")
+
+[node name="InWorldTrackingLayer" type="Control" parent="." unique_id=2014591385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_tracking")
+
+[node name="MinimapRadar" type="Control" parent="." unique_id=1371139346]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 152.0
+offset_bottom = 152.0
+script = ExtResource("2_radar")
+
+[node name="RadarScanButton" type="Button" parent="MinimapRadar" unique_id=1086675537]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 140.0
+offset_right = 133.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.4, 1, 0.6, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "[F] RADAR SCAN"
+
+[node name="RadarStatusLabel" type="Label" parent="MinimapRadar" unique_id=659806524]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 172.0
+offset_right = 146.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0.35, 0.95, 0.55, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = "[F] RADAR: SẴN SÀNG"
+horizontal_alignment = 1
+
+[node name="TopMissionBar" type="PanelContainer" parent="." unique_id=2055514515]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 10.0
+offset_right = 280.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopMissionBar" unique_id=885867584]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="MissionTitle" type="Label" parent="TopMissionBar/HBoxContainer" unique_id=744642343]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 13
+text = "NHIEM VU: MAN 1 - NHAP MON PHAO BINH"
+
+[node name="EnemyCountLabel" type="Label" parent="TopMissionBar/HBoxContainer" unique_id=516123962]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 13
+text = "QUAN DICH: 3 XE"
+
+[node name="MatchTimeLabel" type="Label" parent="TopMissionBar/HBoxContainer" unique_id=2118113252]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 13
+text = "00:00"
+
+[node name="CenterAimData" type="Control" parent="." unique_id=2110500689]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -175.0
+offset_right = 150.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterAimData" unique_id=1831192919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="CenterAimData/VBoxContainer" unique_id=1356762377]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.98)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 24
+text = "154 M"
+horizontal_alignment = 1
+
+[node name="DistTag" type="Label" parent="CenterAimData/VBoxContainer" unique_id=362507361]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.88, 0.85)
+theme_override_font_sizes/font_size = 12
+text = "Distance"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterAimData/VBoxContainer" unique_id=285983760]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="CenterAimData/VBoxContainer/HBoxContainer" unique_id=801615475]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 0.95)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "0 KPH"
+
+[node name="AngleLabel" type="Label" parent="CenterAimData/VBoxContainer/HBoxContainer" unique_id=257094268]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.92, 1, 0.95)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 13
+text = "45° Angle"
+
+[node name="BottomCenter" type="Control" parent="." unique_id=644402211]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -102.0
+offset_right = 150.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ChassisCompass" type="Control" parent="BottomCenter" unique_id=513915452]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 54.0
+grow_horizontal = 2
+script = ExtResource("3_compass")
+
+[node name="HeadingLabel" type="Label" parent="BottomCenter/ChassisCompass" unique_id=309183930]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 38.0
+offset_right = 45.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.4, 0.88, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 9
+text = "000° HEADING"
+horizontal_alignment = 1
+
+[node name="HealthPanel" type="Panel" parent="BottomCenter" unique_id=1365801948]
+layout_mode = 0
+offset_left = -145.0
+offset_top = 54.0
+offset_right = 145.0
+offset_bottom = 90.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_health_panel")
+
+[node name="HPLabel" type="Label" parent="BottomCenter/HealthPanel" unique_id=471814714]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 285.0
+offset_bottom = 17.0
+theme_override_colors/font_color = Color(0.92, 1, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "MÁU CHIẾN XA: 100 / 100 HP"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="BottomCenter/HealthPanel" unique_id=2025385896]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 280.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+value = 100.0
+show_percentage = false
+
+[node name="BottomRightSkills" type="PanelContainer" parent="." unique_id=1841060134]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -542.0
+offset_top = -99.0
+offset_right = -367.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRightSkills" unique_id=817191274]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="BottomRightSkills/VBoxContainer" unique_id=1266693458]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "Kỹ năng tác chiến"
+horizontal_alignment = 1
+
+[node name="SkillsHBox" type="HBoxContainer" parent="BottomRightSkills/VBoxContainer" unique_id=1247906237]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="SkillQ" type="VBoxContainer" parent="BottomRightSkills/VBoxContainer/SkillsHBox" unique_id=1918182316]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillQ" unique_id=465550054]
+custom_minimum_size = Vector2(46, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "SỬA CHỮA"
+
+[node name="Label" type="Label" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillQ" unique_id=407303190]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "[Q] +35"
+horizontal_alignment = 1
+
+[node name="SkillE" type="VBoxContainer" parent="BottomRightSkills/VBoxContainer/SkillsHBox" unique_id=1397757553]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillE" unique_id=2137443301]
+custom_minimum_size = Vector2(46, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "SMOKE"
+
+[node name="Label" type="Label" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillE" unique_id=1147289954]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "[E] KHOI"
+horizontal_alignment = 1
+
+[node name="SkillF" type="VBoxContainer" parent="BottomRightSkills/VBoxContainer/SkillsHBox" unique_id=521325229]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillF" unique_id=1382527834]
+custom_minimum_size = Vector2(46, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "RADAR"
+
+[node name="Label" type="Label" parent="BottomRightSkills/VBoxContainer/SkillsHBox/SkillF" unique_id=870232295]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "[F] DÒ"
+horizontal_alignment = 1
+
+[node name="BottomRightWeapons" type="PanelContainer" parent="." unique_id=1460170866]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -102.0
+offset_right = -24.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRightWeapons" unique_id=1044496676]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="BottomRightWeapons/VBoxContainer" unique_id=1974489869]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "HỆ THỐNG HOẢ LỰC"
+horizontal_alignment = 1
+
+[node name="ArtilleryCard" type="VBoxContainer" parent="BottomRightWeapons/VBoxContainer" unique_id=263240402]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Icon" type="Label" parent="BottomRightWeapons/VBoxContainer/ArtilleryCard" unique_id=1484808694]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.3, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "[1] PHÁO CỐI"
+
+[node name="Status" type="Label" parent="BottomRightWeapons/VBoxContainer/ArtilleryCard" unique_id=184406628]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 1, 0.5, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 11
+text = "SẴN SÀNG KHAI HOẢ"
+horizontal_alignment = 1
+
+[node name="MGCard" type="VBoxContainer" parent="BottomRightWeapons/VBoxContainer" unique_id=1278612083]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Icon" type="Label" parent="BottomRightWeapons/VBoxContainer/MGCard" unique_id=550605760]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "[2] SÚNG MÁY"
+
+[node name="Status" type="Label" parent="BottomRightWeapons/VBoxContainer/MGCard" unique_id=719988485]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 11
+text = "SẴN SÀNG KHAI HOẢ"
+horizontal_alignment = 1
+
+[node name="HeatBar" type="ProgressBar" parent="BottomRightWeapons/VBoxContainer/MGCard" unique_id=634496947]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+show_percentage = false
+
+[node name="RightControlsGuide" type="PanelContainer" parent="." unique_id=501943696]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -188.0
+offset_right = -12.0
+offset_bottom = -142.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightControlsGuide" unique_id=861908005]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="GuideLine1" type="Label" parent="RightControlsGuide/VBoxContainer" unique_id=1274073428]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 0.85)
+theme_override_font_sizes/font_size = 10
+text = "[WASD] DI CHUYEN"
+
+[node name="GuideLine2" type="Label" parent="RightControlsGuide/VBoxContainer" unique_id=1734210074]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 0.8, 0.85)
+theme_override_font_sizes/font_size = 10
+text = "[CHUOT L/R] BAN | [Q/E/F] KY NANG"

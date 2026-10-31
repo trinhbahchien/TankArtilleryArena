@@ -1,0 +1,162 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/entities/PlayerTank.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/entities/EnemyTank.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/environment/Wall.tscn" id="4_wall"]
+[ext_resource type="PackedScene" path="res://scenes/environment/DestructibleCrate.tscn" id="5_crate"]
+[ext_resource type="FontFile" path="res://assets/fonts/Xolonium-Regular.ttf" id="6_font"]
+[ext_resource type="PackedScene" path="res://scenes/levels/Level3.tscn" id="7_next"]
+
+[ext_resource type="PackedScene" path="res://scenes/environment/Bush.tscn" id="bush_res"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz_border"]
+size = Vector2(2300, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vert_border"]
+size = Vector2(50, 1500)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_main")
+level_number = 2
+level_title = "MÀN 2: PHỐI HỢP HỎA LỰC (CẬN CHIẾN & TẦM XA)"
+next_level_scene = ExtResource("7_next")
+
+[node name="WorldCanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.48, 0.52, 0.58, 1)
+
+[node name="GroundColor" type="ColorRect" parent="."]
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 2300.0
+offset_bottom = 1500.0
+mouse_filter = 2
+color = Color(0.14, 0.16, 0.19, 1)
+
+[node name="BoundaryWalls" type="Node2D" parent="."]
+
+[node name="TopBorder" type="StaticBody2D" parent="BoundaryWalls"]
+position = Vector2(1100, -10)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryWalls/TopBorder"]
+shape = SubResource("RectangleShape2D_horiz_border")
+
+[node name="ColorRect" type="ColorRect" parent="BoundaryWalls/TopBorder"]
+offset_left = -1150.0
+offset_top = -25.0
+offset_right = 1150.0
+offset_bottom = 25.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="BottomBorder" type="StaticBody2D" parent="BoundaryWalls"]
+position = Vector2(1100, 1410)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryWalls/BottomBorder"]
+shape = SubResource("RectangleShape2D_horiz_border")
+
+[node name="ColorRect" type="ColorRect" parent="BoundaryWalls/BottomBorder"]
+offset_left = -1150.0
+offset_top = -25.0
+offset_right = 1150.0
+offset_bottom = 25.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="LeftBorder" type="StaticBody2D" parent="BoundaryWalls"]
+position = Vector2(-10, 700)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryWalls/LeftBorder"]
+shape = SubResource("RectangleShape2D_vert_border")
+
+[node name="ColorRect" type="ColorRect" parent="BoundaryWalls/LeftBorder"]
+offset_left = -25.0
+offset_top = -750.0
+offset_right = 25.0
+offset_bottom = 750.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="RightBorder" type="StaticBody2D" parent="BoundaryWalls"]
+position = Vector2(2210, 700)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryWalls/RightBorder"]
+shape = SubResource("RectangleShape2D_vert_border")
+
+[node name="ColorRect" type="ColorRect" parent="BoundaryWalls/RightBorder"]
+offset_left = -25.0
+offset_top = -750.0
+offset_right = 25.0
+offset_bottom = 750.0
+color = Color(0.24, 0.27, 0.32, 1)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Wall1" parent="Obstacles" instance=ExtResource("4_wall")]
+position = Vector2(950, 480)
+
+[node name="Wall2" parent="Obstacles" instance=ExtResource("4_wall")]
+position = Vector2(950, 536)
+
+[node name="Wall3" parent="Obstacles" instance=ExtResource("4_wall")]
+position = Vector2(950, 864)
+
+[node name="Wall4" parent="Obstacles" instance=ExtResource("4_wall")]
+position = Vector2(950, 920)
+
+[node name="Crate1" parent="Obstacles" instance=ExtResource("5_crate")]
+position = Vector2(950, 640)
+
+[node name="Crate2" parent="Obstacles" instance=ExtResource("5_crate")]
+position = Vector2(950, 760)
+
+[node name="PlayerTank" parent="." instance=ExtResource("2_player")]
+position = Vector2(340, 700)
+
+[node name="EnemyTank_Assault" parent="." instance=ExtResource("3_enemy")]
+position = Vector2(1300, 480)
+combat_role = 0
+patrol_route = [Vector2(1300, 380), Vector2(1720, 380), Vector2(1720, 680), Vector2(1300, 680)]
+
+[node name="EnemyTank_Defense" parent="." instance=ExtResource("3_enemy")]
+position = Vector2(1500, 900)
+combat_role = 0
+patrol_route = [Vector2(1250, 920), Vector2(1750, 920), Vector2(1750, 1180), Vector2(1250, 1180)]
+
+
+[node name="Bushes" type="Node2D" parent="."]
+
+[node name="Bush1" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(460, 480)
+
+[node name="Bush2" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(560, 530)
+
+[node name="Bush3" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(480, 920)
+
+[node name="Bush4" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1150, 480)
+
+[node name="Bush5" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1250, 530)
+
+[node name="Bush6" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1180, 920)
+
+[node name="Bush7_Ambush" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1250, 520)
+
+[node name="Bush8_Ambush" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1510, 380)
+
+[node name="Bush9_Ambush" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1480, 920)
+
+[node name="Bush10_Ambush" parent="Bushes" instance=ExtResource("bush_res")]
+position = Vector2(1750, 780)

@@ -1,0 +1,483 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_menu"]
+[ext_resource type="FontFile" path="res://assets/fonts/Xolonium-Regular.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary"]
+bg_color = Color(0.12, 0.28, 0.42, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.85, 1, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.1, 0.6, 0.9, 0.3)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary_hover"]
+bg_color = Color(0.18, 0.42, 0.62, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.2, 0.8, 1, 0.5)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.15, 0.18, 0.24, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.45, 0.6, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.22, 0.28, 0.38, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.7, 0.95, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_danger"]
+bg_color = Color(0.28, 0.14, 0.16, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.3, 0.35, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_danger_hover"]
+bg_color = Color(0.42, 0.18, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.45, 0.45, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 22.0
+bg_color = Color(0.05, 0.07, 0.11, 0.99)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.85, 1, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.85)
+shadow_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.08, 0.11, 0.17, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.5, 0.75, 0.5)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.09, 0.12, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(680, 0)
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="HeaderGroup" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GameTitle" type="Label" parent="CenterContainer/VBoxContainer/HeaderGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.9, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.2, 0.45, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 46
+text = "TANK ARTILLERY ARENA"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="CenterContainer/VBoxContainer/HeaderGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "MÔ PHỎNG CHIẾN ĐẤU PHÁO BINH 2.5D & VŨ KHÍ PHÂN TẦNG"
+horizontal_alignment = 1
+
+[node name="DeptLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.65, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "Đồ Án Tốt Nghiệp: Tương Tác Đối Tượng trong Môi Trường Ảo - HUBT 2026"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonGroup" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="CampaignButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary_hover")
+text = "BẮT ĐẦU CHIẾN DỊCH (MÀN 1)"
+
+[node name="LevelSelectButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "CHỌN MÀN CHƠI TỰ DO (1 - 10)"
+
+[node name="CustomizationButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "TÙY CHỈNH HỎA LỰC & TRANG BỊ"
+
+[node name="SandboxButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "PHÒNG TẬP BẮN (SANDBOX RANGE)"
+
+[node name="InstructionsButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "HƯỚNG DẪN ĐIỀU KHIỂN & VŨ KHÍ"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonGroup"]
+custom_minimum_size = Vector2(440, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_danger")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_danger_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_danger_hover")
+text = "THOÁT GAME (ESC)"
+
+[node name="BottomBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VolumeIcon" type="Label" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "Âm lượng:"
+
+[node name="VolumeSlider" type="HSlider" parent="BottomBar/HBoxContainer"]
+custom_minimum_size = Vector2(160, 24)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="VolumeLabel" type="Label" parent="BottomBar/HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+text = "100%"
+
+[node name="VSeparator" type="VSeparator" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenButton" type="Button" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "Toàn màn hình"
+
+[node name="Spacer" type="Control" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VersionLabel" type="Label" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+text = "Godot Engine v4.7.2 GDScript | Build 2026"
+
+[node name="InstructionsModal" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -340.0
+offset_right = 460.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstructionsModal"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ModalTitle" type="Label" parent="InstructionsModal/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "CẨM NANG TÁC CHIẾN & ĐIỀU KHIỂN"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="InstructionsModal/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContentLabel" type="RichTextLabel" parent="InstructionsModal/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[b][color=#55eeff]1. DI CHUYỂN & LÁI XE:[/color][/b]
+• [b]W / S[/b]: Tiến lên / Lùi xe theo hướng mũi xe.
+• [b]A / D[/b]: Xoay thân xe tăng sang trái / phải.
+
+[b][color=#ffdd44]2. HỎA LỰC TÁC CHIẾN (CHUỘT TRÁI & CHUỘT PHẢI):[/color][/b]
+• [b]Chuột trái (Vũ khí chính)[/b]: Pháo cối Parabola (xuyên tường AoE) / Song pháo AP / Rocket chùm dẫn đường (chọn tại Menu).
+• [b]Chuột phải (Vũ khí phụ - 3 loại)[/b]:
+  + [b]Súng Xuyên Giáp AP (Mặc định)[/b]: Sát thương cao, sơ tốc nhanh, tốc bắn và hồi lâu hơn.
+  + [b]Súng Máy Liên Thanh[/b]: Tốc bắn cực nhanh, có cơ chế Quá nhiệt (Burn Out).
+  + [b]Súng Shotgun Tán Xạ[/b]: Bắn chùm 6 mảnh đạn rẻ quạt uy lực hủy diệt cận chiến.
+• [i][color=#ffaa55]*Lưu ý: Chỉ có thể điều chỉnh và trang bị vũ khí tại Menu chính trước khi xuất kích.*[/color][/i]
+
+[b][color=#55ff88]3. KỸ NĂNG & ẨN THÂN TÁC CHIẾN:[/color][/b]
+• [b]Phím Q (Sửa xe)[/b]: Hồi +35 HP (Hồi chiêu 12s).
+• [b]Phím E (Khói mù)[/b]: Màn khói mù cố định 6s, AI mất dấu và tên lửa đuổi bị mù cảm biến bay loạn xạ!
+• [b]Phím F (Dò Radar)[/b]: Quét toàn bản đồ định vị địch và lập tức khóa mục tiêu tên lửa.
+• [b]Bụi cây ngụy trang[/b]: Núp vào bụi cây sẽ ẩn thân như khói. Nếu nổ súng từ bụi cây, vị trí sẽ bị lộ trong 2.5s!"
+
+[node name="CloseButton" type="Button" parent="InstructionsModal/VBoxContainer"]
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary_hover")
+text = "ĐÃ HIỂU, ĐÓNG"
+
+[node name="CustomizationModal" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -285.0
+offset_right = 460.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomizationModal"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="ModalTitle" type="Label" parent="CustomizationModal/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "TÙY CHỈNH HỎA LỰC CHIẾN TĂNG"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CustomizationModal/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectorsRow" type="HBoxContainer" parent="CustomizationModal/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="WeaponSection" type="VBoxContainer" parent="CustomizationModal/VBoxContainer/SelectorsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="WeaponLabel" type="Label" parent="CustomizationModal/VBoxContainer/SelectorsRow/WeaponSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "1. VŨ KHÍ CHÍNH (CHUỘT TRÁI):"
+
+[node name="WeaponOption" type="OptionButton" parent="CustomizationModal/VBoxContainer/SelectorsRow/WeaponSection"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+
+[node name="SecondaryWeaponSection" type="VBoxContainer" parent="CustomizationModal/VBoxContainer/SelectorsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="SecondaryWeaponLabel" type="Label" parent="CustomizationModal/VBoxContainer/SelectorsRow/SecondaryWeaponSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.95, 0.6, 1)
+theme_override_font_sizes/font_size = 14
+text = "2. VŨ KHÍ PHỤ (CHUỘT PHẢI):"
+
+[node name="SecondaryWeaponOption" type="OptionButton" parent="CustomizationModal/VBoxContainer/SelectorsRow/SecondaryWeaponSection"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+
+[node name="CardsRow" type="HBoxContainer" parent="CustomizationModal/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="PrimaryCard" type="PanelContainer" parent="CustomizationModal/VBoxContainer/CardsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="PrimaryDetails" type="RichTextLabel" parent="CustomizationModal/VBoxContainer/CardsRow/PrimaryCard"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Thông số vũ khí chính..."
+
+[node name="SecondaryCard" type="PanelContainer" parent="CustomizationModal/VBoxContainer/CardsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="SecondaryDetails" type="RichTextLabel" parent="CustomizationModal/VBoxContainer/CardsRow/SecondaryCard"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "Thông số vũ khí phụ..."
+
+[node name="ActionRow" type="HBoxContainer" parent="CustomizationModal/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="CustomizationModal/VBoxContainer/ActionRow"]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary_hover")
+text = "LƯU VÀ ÁP DỤNG"
+
+[node name="CloseCustomizationButton" type="Button" parent="CustomizationModal/VBoxContainer/ActionRow"]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "ĐÓNG"

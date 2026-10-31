@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/DestructibleCrate.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/onlyObjects_retina_rotated.png" id="2_atlas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crate"]
+size = Vector2(54, 54)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_crate"]
+polygon = PackedVector2Array(-26, -26, 26, -26, 26, 26, -26, 26)
+
+[node name="DestructibleCrate" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1_script")
+
+[node name="Shadow" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = -23.0
+offset_right = 29.0
+offset_bottom = 31.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(72, 130, 56, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_crate")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_crate")
